@@ -10,12 +10,9 @@ class KeyPair:
     def __init__(self):
         self.private = random.randint(2**16, 2**18)
         print('private key: ', self.private)
-        self.public = self.get_mod
+        self.public = (self.g ** self.private) % self.p
         print('public key: ', self.public)
 
-    @property
-    def get_mod(self):
-        return (self.g ** self.private) % self.p
 
 class SecretKey:
     p = KeyPair.p
