@@ -36,5 +36,5 @@ func main() {
 	fmt.Printf("bob private key: %v\n", bobPrivateKey)
 	fmt.Printf("alice public key: %v\n", alicePublicKey)
 	fmt.Printf("bob public key: %v\n", bobPublicKey)
-	fmt.Printf("secrets keys: %v, %v\n", aliceSecretKey, bobSecretKey)
+	fmt.Printf("secret keys: %v, %v\n", aliceSecretKey, bobSecretKey)
 }
