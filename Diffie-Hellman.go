@@ -7,14 +7,10 @@ import (
 )
 
 
-func getSecretKey(public, private, p *big.Int) *big.Int {
-	secret := big.NewInt(0)
-	return secret.Exp(public, private, p)
-}
-
-func getPublicKey(g, private, p *big.Int) *big.Int {
+func getKey(variable, private, p *big.Int) *big.Int {
+	// variable: g for public key/public key for secret key
 	mod := big.NewInt(0)
-	return mod.Exp(g, private, p)
+	return mod.Exp(variable, private, p)
 }
 
 func main() {
@@ -26,11 +22,11 @@ func main() {
 	alicePrivateKey := big.NewInt(rand.Int63())
 	bobPrivateKey := big.NewInt(rand.Int63())
 
-	alicePublicKey := getPublicKey(g, alicePrivateKey, p)
-	bobPublicKey := getPublicKey(g, bobPrivateKey, p)
+	alicePublicKey := getKey(g, alicePrivateKey, p)
+	bobPublicKey := getKey(g, bobPrivateKey, p)
 
-	aliceSecretKey := getSecretKey(bobPublicKey, alicePrivateKey, p)
-	bobSecretKey := getSecretKey(alicePublicKey, bobPrivateKey, p)
+	aliceSecretKey := getKey(bobPublicKey, alicePrivateKey, p)
+	bobSecretKey := getKey(alicePublicKey, bobPrivateKey, p)
 
 	fmt.Printf("alice private key: %v\n", alicePrivateKey)
 	fmt.Printf("bob private key: %v\n", bobPrivateKey)
