@@ -30,20 +30,9 @@ def symmetrical_decrypt(encrypted_message, key):
     decrypted_message_with_hash = cipher.decrypt(encrypted_message)[bsize:]
     decrypted_message = decrypted_message_with_hash[:-dsize]
     digest = SHA256.new(decrypted_message).hexdigest()
+    frm = decrypted_message_with_hash[-dsize:].decode()
     if digest == decrypted_message_with_hash[-dsize:].decode():
-        print(
-            f"""
-            Encrypted hash: {decrypted_message_with_hash[-dsize:].decode()}\n
-            Decripted hash is: {digest}
-            """
-        )
+        print(f"Encrypted hash: {frm}\nDecripted hash is: {digest}")
         return decrypted_message.decode()
     else:
-        print(
-            f"""
-            Encrypted was not correct. Encrypted hash: 
-            {decrypted_message_with_hash[-dsize:].decode()}\n
-            Decripted hash is: {digest}
-            """
-        )
-
+        print(f"Encrypted was not correct. Encrypted hash: {frm}\nDecripted hash is: {digest}")
