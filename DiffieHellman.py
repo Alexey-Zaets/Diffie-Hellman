@@ -9,9 +9,9 @@ class KeyPair:
 
     def __init__(self):
         self.private = random.randint(2**16, 2**18)
-        print('private key: ', self.private)
+        # print('private key: ', self.private)
         self.public = (self.g ** self.private) % self.p
-        print('public key: ', self.public)
+        # print('public key: ', self.public)
 
 
 class SecretKey:
@@ -21,13 +21,10 @@ class SecretKey:
         self.secret = (public ** private) % self.p
 
 
-alice = KeyPair()
-bob = KeyPair()
+# alice = KeyPair()
+# bob = KeyPair()
 
-alice.secret = SecretKey(alice.private, bob.public)
-print('alice secret key: ', alice.secret.secret)
-bob.secret = SecretKey(bob.private, alice.public)
-print('bob secret key: ', bob.secret.secret)
-
-print(alice.secret.secret == bob.secret.secret)
-exit(0)
+# alice.secret = SecretKey(alice.private, bob.public)
+# print('alice secret key: ', alice.secret.secret)
+# bob.secret = SecretKey(bob.private, alice.public)
+# print('bob secret key: ', bob.secret.secret)
